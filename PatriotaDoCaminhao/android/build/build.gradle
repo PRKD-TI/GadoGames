@@ -188,6 +188,9 @@ android {
             } else {
                 signingConfig null
             }
+            ndk {
+                debugSymbolLevel 'SYMBOL_TABLE'
+            }
         }
     }
 

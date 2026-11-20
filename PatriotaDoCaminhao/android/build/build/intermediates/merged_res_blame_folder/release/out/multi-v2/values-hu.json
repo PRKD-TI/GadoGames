@@ -4,7 +4,7 @@
             "outputFile": "com.godot.game-mergeReleaseResources-17:/values-hu/values-hu.xml",
             "map": [
                 {
-                    "source": "/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/res/values-hu/godot_project_name_string.xml",
+                    "source": "/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/res/values-hu/godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",

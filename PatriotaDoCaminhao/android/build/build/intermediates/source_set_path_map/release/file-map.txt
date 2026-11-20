@@ -13,10 +13,10 @@ com.godot.game-jetified-startup-runtime-1.1.1-11 /home/prkd/.gradle/caches/trans
 com.godot.game-jetified-activity-1.8.1-12 /home/prkd/.gradle/caches/transforms-3/c03fac50118fed4c446fe2dbbb7ccb60/transformed/jetified-activity-1.8.1/res
 com.godot.game-lifecycle-livedata-2.6.1-13 /home/prkd/.gradle/caches/transforms-3/c96a8659546c6e7fe813d23b94cc24a7/transformed/lifecycle-livedata-2.6.1/res
 com.godot.game-jetified-core-splashscreen-1.0.1-14 /home/prkd/.gradle/caches/transforms-3/dd89130c4a8ca50a04569d2aa68e9e1e/transformed/jetified-core-splashscreen-1.0.1/res
-com.godot.game-pngs-15 /home/prkd/Gado/GadoGames/patriota_caminhao/android/build/build/generated/res/pngs/release
-com.godot.game-resValues-16 /home/prkd/Gado/GadoGames/patriota_caminhao/android/build/build/generated/res/resValues/release
-com.godot.game-packageReleaseResources-17 /home/prkd/Gado/GadoGames/patriota_caminhao/android/build/build/intermediates/incremental/release/packageReleaseResources/merged.dir
-com.godot.game-packageReleaseResources-18 /home/prkd/Gado/GadoGames/patriota_caminhao/android/build/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
-com.godot.game-merged_res-19 /home/prkd/Gado/GadoGames/patriota_caminhao/android/build/build/intermediates/merged_res/release
-com.godot.game-build-20 /home/prkd/Gado/GadoGames/patriota_caminhao/android/build/res
-com.godot.game-release-21 /home/prkd/Gado/GadoGames/patriota_caminhao/android/build/src/release/res
+com.godot.game-pngs-15 /home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/build/generated/res/pngs/release
+com.godot.game-resValues-16 /home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/build/generated/res/resValues/release
+com.godot.game-packageReleaseResources-17 /home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/build/intermediates/incremental/release/packageReleaseResources/merged.dir
+com.godot.game-packageReleaseResources-18 /home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
+com.godot.game-merged_res-19 /home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/build/intermediates/merged_res/release
+com.godot.game-build-20 /home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/res
+com.godot.game-release-21 /home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/src/release/res

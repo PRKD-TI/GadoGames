@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/res/values-el/godot_project_name_string.xml",
+                    "source": "/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/res/values-el/godot_project_name_string.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "1",

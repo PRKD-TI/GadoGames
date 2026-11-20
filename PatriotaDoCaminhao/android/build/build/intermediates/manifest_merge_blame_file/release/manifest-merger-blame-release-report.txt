@@ -7,86 +7,86 @@
 7
 8    <uses-sdk
 9        android:minSdkVersion="24"
-10        android:targetSdkVersion="34" />
+10        android:targetSdkVersion="36" />
 11
 12    <supports-screens
-12-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:8:5-12:40
+12-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:8:5-12:40
 13        android:largeScreens="true"
-13-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:11:9-36
+13-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:11:9-36
 14        android:normalScreens="true"
-14-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:10:9-37
+14-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:10:9-37
 15        android:smallScreens="true"
-15-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:9:9-36
+15-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:9:9-36
 16        android:xlargeScreens="true" />
-16-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:12:9-37
+16-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:12:9-37
 17
 18    <uses-feature
-18-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:14:5-16:35
+18-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:14:5-16:35
 19        android:glEsVersion="0x00030000"
-19-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:15:9-41
+19-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:15:9-41
 20        android:required="true" />
-20-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:16:9-32
+20-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:16:9-32
 21
 22    <application
-22-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:18:5-56:19
+22-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:18:5-56:19
 23        android:allowBackup="false"
-23-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:20:9-36
+23-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:20:9-36
 24        android:appCategory="game"
-24-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:22:9-35
+24-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:22:9-35
 25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 25-->[androidx.core:core:1.8.0] /home/prkd/.gradle/caches/transforms-3/245f1aa0863a677574781ac0a1900f6e/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
 26        android:extractNativeLibs="false"
 27        android:hasFragileUserData="false"
-27-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:24:9-43
+27-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:24:9-43
 28        android:icon="@mipmap/icon"
-28-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:21:9-36
+28-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:21:9-36
 29        android:isGame="true"
-29-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:23:9-30
+29-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:23:9-30
 30        android:label="@string/godot_project_name_string"
-30-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:19:9-58
+30-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:19:9-58
 31        android:requestLegacyExternalStorage="false" >
-31-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:25:9-53
+31-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:25:9-53
 32        <activity
-32-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:37:9-54:20
+32-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:37:9-54:20
 33            android:name="com.godot.game.GodotApp"
-33-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:38:13-37
+33-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:38:13-37
 34            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|density|keyboard|navigation|screenLayout|uiMode"
-34-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:45:13-141
+34-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:45:13-141
 35            android:excludeFromRecents="false"
-35-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:42:13-47
+35-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:42:13-47
 36            android:exported="true"
-36-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:43:13-36
+36-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:43:13-36
 37            android:label="@string/godot_project_name_string"
-37-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:39:13-62
+37-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:39:13-62
 38            android:launchMode="singleInstancePerTask"
-38-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:41:13-55
+38-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:41:13-55
 39            android:resizeableActivity="true"
-39-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:46:13-47
+39-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:46:13-47
 40            android:screenOrientation="portrait"
-40-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:44:13-50
+40-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:44:13-50
 41            android:theme="@style/GodotAppSplashTheme" >
-41-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:40:13-55
+41-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:40:13-55
 42            <intent-filter>
-42-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:49:13-53:29
+42-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:49:13-53:29
 43                <action android:name="android.intent.action.MAIN" />
-43-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:50:17-69
-43-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:50:25-66
+43-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:50:17-69
+43-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:50:25-66
 44
 45                <category android:name="android.intent.category.DEFAULT" />
-45-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:51:17-76
-45-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:51:27-73
+45-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:51:17-76
+45-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:51:27-73
 46                <category android:name="android.intent.category.LAUNCHER" />
-46-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:52:17-77
-46-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:52:27-74
+46-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:52:17-77
+46-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:52:27-74
 47            </intent-filter>
 48        </activity>
 49
 50        <profileable
-50-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:27:9-30:36
+50-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:27:9-30:36
 51            android:enabled="true"
-51-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:29:13-35
+51-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:29:13-35
 52            android:shell="true" /> <!-- Records the version of the Godot editor used for building -->
-52-->/home/prkd/Gado/GadoGames/patriota_caminhao/android/build/AndroidManifest.xml:28:13-33
+52-->/home/prkd/Gado/GadoGames/PatriotaDoCaminhao/android/build/AndroidManifest.xml:28:13-33
 53        <meta-data
 54            android:name="org.godotengine.editor.version"
 55            android:value="4.3.stable" /> <!-- Records the version of the Godot library -->

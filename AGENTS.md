@@ -64,7 +64,31 @@ Todo jogo no `GadoGames` é projetado para rodar simultaneamente na **Web (HTML5
 
 ---
 
-## 4. Padrão de Publicação e Assets para a Play Store
+## 4. Requisitos de Build Android e Google Play Store
+
+Conforme validado e estabelecido na publicação dos jogos do estúdio (ex: *Sliding Words*):
+
+1. **Target SDK Obrigatório:**
+   * **`compileSdk = 36`**
+   * **`targetSdk = 36`** (Android 16 / exigência do Google Play Console)
+   * **`minSdk = 24`** (Android 7.0+)
+   * **`buildTools = '36.0.0'`**
+2. **Símbolos Nativos de Depuração (NDK):**
+   * Em `build.gradle`, o `buildTypes.release` deve conter:
+     ```groovy
+     ndk {
+         debugSymbolLevel 'SYMBOL_TABLE'
+     }
+     ```
+   * Isso evita o aviso da Play Store sobre código nativo sem símbolos de depuração.
+3. **Versão do Java (JDK):**
+   * Sempre usar **Java 17 (OpenJDK 17)** para compilar o Gradle do Godot 4.
+4. **Formato de Publicação:**
+   * Sempre gerar Android App Bundle (**`.aab`**) assinado com chave de release.
+
+---
+
+## 5. Padrão de Publicação e Assets para a Play Store
 
 Cada subpasta de jogo deve conter um diretório `playstore_assets/` contendo:
 * `playstore_icon_512x512.png`: Ícone oficial de alta resolução (512x512 px PNG 32-bit).
@@ -74,7 +98,7 @@ Cada subpasta de jogo deve conter um diretório `playstore_assets/` contendo:
 
 ---
 
-## 5. Segurança de Chaves e Repositório Git
+## 6. Segurança de Chaves e Repositório Git
 
 > [!CAUTION]
 > **NUNCA** commitar chaves de assinatura (`.keystore`, `.jks`), senhas ou tokens de API no Git.
