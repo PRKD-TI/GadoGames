@@ -4,6 +4,8 @@
 
 # Build exports and binaries
 exports/
+**/build/
+**/.gradle/
 android/build/
 android/.build_version
 
@@ -13,3 +15,4 @@ android/.build_version
 
 # Mono / C#
 .mono/
+
