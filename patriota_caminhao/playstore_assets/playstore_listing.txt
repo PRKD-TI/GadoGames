@@ -1,0 +1,63 @@
+================================================================================
+FICHA COMPLETA PARA A GOOGLE PLAY STORE — PATRIOTA DO CAMINHÃO
+================================================================================
+
+1. DADOS BÁSICOS
+--------------------------------------------------------------------------------
+Nome do App: Patriota do Caminhão
+Idioma Padrão: Português (Brasil) - pt-BR
+Tipo de App: Jogo
+Categoria: Arcade / Casual
+Gratuito ou Pago: Gratuito
+
+2. TEXTOS DA FICHA NA PLAY STORE
+--------------------------------------------------------------------------------
+[Descrição Curta - Até 80 caracteres]:
+Equilibre o patriota no para-choque do caminhão e sobreviva às curvas da rodovia!
+
+[Descrição Completa]:
+🚚 Segure firme e resista a mais 72 horas no para-choque de um caminhão em alta velocidade! 🇧🇷
+
+Inspirado no meme clássico brasileiro, em "Patriota do Caminhão" o seu objetivo é um só: manter o centro de equilíbrio e não deixar o personagem escorregar e voar pela rodovia enquanto o caminhão faz manobras evasivas, desvios e curvas fechadas!
+
+🎮 DUAS VISÕES EM TEMPO REAL:
+• Visão da Cabine (Motorista): Encare o patriota com a cara colada no para-brisa enquanto o volante vira e o velocímetro sobe!
+• Visão Frontal Externa: Veja a grade dianteira pesada, as bandeirinhas balançando nos retrovisores e o patriota tentando não cair no asfalto!
+
+📱 CONTROLES INTUITIVOS:
+• Incline o Celular (Giroscópio): Equilibre o patriota movendo o aparelho naturalmente com as mãos!
+• Botões Touch na Tela: Jogue com toques rápidos nas setas da tela se preferir.
+
+🏆 CONQUISTAS E RECOMPENSAS HILÁRIAS:
+• 🇧🇷 A cada 10 segundos resistidos, ganhe uma Bandeirinha da Pátria!
+• 🛞 Complete 1 minuto de equilíbrio e conquiste o lendário PNEU DE CAMINHÃO SAGRADO!
+• Desbloqueie títulos cômicos de sobrevivência: de "Pneu Murcho" a "Mito da BR-101".
+
+Você tem o equilíbrio necessário para resistir? Baixe agora e teste seus reflexos!
+
+3. RESPOSTAS DOS QUESTIONÁRIOS DE POLÍTICA (GOOGLE PLAY CONSOLE)
+--------------------------------------------------------------------------------
+• Acesso a apps: Todas as funcionalidades estão disponíveis sem restrições especiais.
+• Anúncios: Marcar "Não, meu app não contém anúncios" (ou Sim, se for adicionar depois).
+• Classificação de Conteúdo (IARC):
+  - Categoria: Jogo / Arcade
+  - Violência física: NÃO (animação cartunesca sem sangue ou ferimentos)
+  - Medo / Terror: NÃO
+  - Sexualidade: NÃO
+  - Linguagem vulgar: NÃO
+  - Substâncias ilícitas / álcool: NÃO
+  - Apostas com dinheiro real: NÃO
+  -> Resultado esperado: Classificação LIVRE para todas as idades (ESRB Everyone / Pegi 3).
+
+• Segurança dos Dados (Data Safety):
+  - Coleta de dados: NÃO, o aplicativo não coleta dados de usuários.
+  - Compartilhamento de dados: NÃO, nenhum dado é compartilhado com terceiros.
+  - Práticas de segurança: Não aplicável pois não há tráfego de dados pessoais.
+
+• Público-Alvo:
+  - Selecionar: Maiores de 13 anos (ou Família / Todas as idades).
+
+================================================================================
+ARQUIVO PARA UPLOAD NA FAIXA DE TESTE FECHADO (OU INTERNO):
+/home/prkd/Gado/GadoGames/patriota_caminhao/exports/android/patriota_caminhao.aab
+================================================================================

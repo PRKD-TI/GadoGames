@@ -1,0 +1,15 @@
+# Godot 4 specifics
+.godot/
+*.translation
+
+# Build exports and binaries
+exports/
+android/build/
+android/.build_version
+
+# Sensitive Keys (NUNCA subir para o GitHub!)
+*.keystore
+*.jks
+
+# Mono / C#
+.mono/

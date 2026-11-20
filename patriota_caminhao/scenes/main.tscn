@@ -1,0 +1,303 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5xk2y8w0j21"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_gm"]
+[ext_resource type="Script" path="res://scripts/truck_controller.gd" id="3_truck"]
+[ext_resource type="Script" path="res://scripts/patriota_controller.gd" id="4_pat"]
+[ext_resource type="Script" path="res://scripts/view_inside.gd" id="5_inside"]
+[ext_resource type="Script" path="res://scripts/view_outside.gd" id="6_outside"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="7_hud"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("2_gm")
+
+[node name="TruckController" type="Node2D" parent="."]
+script = ExtResource("3_truck")
+
+[node name="PatriotaController" type="Node2D" parent="."]
+script = ExtResource("4_pat")
+
+[node name="ViewInside" type="Node2D" parent="."]
+script = ExtResource("5_inside")
+
+[node name="ViewOutside" type="Node2D" parent="."]
+visible = false
+script = ExtResource("6_outside")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("7_hud")
+
+[node name="TopBar" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="TimerLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 16.0
+offset_right = 380.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "⏱️ TEMPO: 00:00.0s"
+vertical_alignment = 1
+
+[node name="RewardsLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 58.0
+offset_right = 450.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 22
+vertical_alignment = 1
+
+[node name="AlertLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 18.0
+offset_right = 250.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "⚠️ CURVA FECHADA!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AchievementPopup" type="Label" parent="HUD/TopBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -380.0
+offset_top = 62.0
+offset_right = 380.0
+offset_bottom = 108.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 0.9, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "🇧🇷 +1 BANDEIRA DA PÁTRIA! (10s)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CameraBtn" type="Button" parent="HUD/TopBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -260.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 18
+text = "🎥 VISÃO: CABINE (C)"
+
+[node name="TiltBtn" type="Button" parent="HUD/TopBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -500.0
+offset_top = 16.0
+offset_right = -280.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 18
+text = "📱 SENSOR: LIGADO"
+
+[node name="CenterHUD" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BarBg" type="ColorRect" parent="HUD/CenterHUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 24.0
+grow_horizontal = 2
+color = Color(0.1, 0.1, 0.12, 0.85)
+
+[node name="DangerLeft" type="ColorRect" parent="HUD/CenterHUD/BarBg"]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 24.0
+color = Color(0.8, 0.15, 0.15, 0.7)
+
+[node name="DangerRight" type="ColorRect" parent="HUD/CenterHUD/BarBg"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_bottom = 24.0
+grow_horizontal = 0
+color = Color(0.8, 0.15, 0.15, 0.7)
+
+[node name="CenterMark" type="ColorRect" parent="HUD/CenterHUD/BarBg"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2.0
+offset_top = -4.0
+offset_right = 2.0
+offset_bottom = 28.0
+grow_horizontal = 2
+color = Color(1, 1, 1, 0.9)
+
+[node name="BalanceBar" type="ProgressBar" parent="HUD/CenterHUD"]
+visible = false
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="BalanceIndicator" type="ColorRect" parent="HUD/CenterHUD"]
+layout_mode = 0
+offset_left = 630.0
+offset_top = -4.0
+offset_right = 650.0
+offset_bottom = 28.0
+color = Color(0.2, 0.9, 0.3, 1)
+
+[node name="BarLabel" type="Label" parent="HUD/CenterHUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = -30.0
+offset_right = 150.0
+offset_bottom = -7.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 0.9)
+text = "EQUILÍBRIO NO PARA-CHOQUE"
+horizontal_alignment = 1
+
+[node name="TouchControls" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BtnLeft" type="Button" parent="HUD/TouchControls"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 10.0
+offset_right = 260.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 22
+text = "◀ ESQUERDA"
+
+[node name="BtnRight" type="Button" parent="HUD/TouchControls"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -260.0
+offset_top = 10.0
+offset_right = -40.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 22
+text = "DIREITA ▶"
+
+[node name="GameOverPanel" type="Panel" parent="HUD"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -210.0
+offset_right = 280.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="HUD/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(1, 0.25, 0.25, 1)
+text = "CAIU DO PARA-CHOQUE! 💥"
+horizontal_alignment = 1
+
+[node name="FinalTimeLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Tempo: 00:00.0s"
+horizontal_alignment = 1
+
+[node name="BestTimeLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+text = "🏆 Recorde: 00:00.0s"
+horizontal_alignment = 1
+
+[node name="ItemsEarnedLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.2, 0.9, 0.4, 1)
+text = "Conquistas: 🇧🇷 x0 | 🛞 x0"
+horizontal_alignment = 1
+
+[node name="RankLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.4, 0.9, 0.5, 1)
+text = "Título: Novato do Para-choque"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RestartBtn" type="Button" parent="HUD/GameOverPanel/VBox"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "🔄 TENTAR DE NOVO (R)"
