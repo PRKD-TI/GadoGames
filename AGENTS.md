@@ -66,29 +66,53 @@ Todo jogo no `GadoGames` é projetado para rodar simultaneamente na **Web (HTML5
 
 ## 4. Requisitos de Build Android e Google Play Store
 
-Conforme validado e estabelecido na publicação dos jogos do estúdio (ex: *Sliding Words*):
+Conforme validado e estabelecido na publicação dos jogos do estúdio (ex: *Sliding Words* e *Patriota do Caminhão*):
 
 1. **Target SDK Obrigatório:**
    * **`compileSdk = 36`**
    * **`targetSdk = 36`** (Android 16 / exigência do Google Play Console)
    * **`minSdk = 24`** (Android 7.0+)
    * **`buildTools = '36.0.0'`**
-2. **Símbolos Nativos de Depuração (NDK):**
-   * Em `build.gradle`, o `buildTypes.release` deve conter:
-     ```groovy
-     ndk {
-         debugSymbolLevel 'SYMBOL_TABLE'
-     }
-     ```
-   * Isso evita o aviso da Play Store sobre código nativo sem símbolos de depuração.
+2. **Versionamento Estrito:**
+   * Toda nova submissão/upload no Play Console exige um **`versionCode` estritamente incremental** (`1`, `2`, `3`...).
+   * Se um upload de `versionCode 1` já tiver sido feito (mesmo como rascunho), o próximo deve ser `versionCode 2` (`versionName 1.0.1`).
 3. **Versão do Java (JDK):**
-   * Sempre usar **Java 17 (OpenJDK 17)** para compilar o Gradle do Godot 4.
+   * Sempre usar **Java 17 (OpenJDK 17)** para compilar o Gradle do Godot 4 (Java 21 causa erro de compatibilidade no Gradle do Godot).
 4. **Formato de Publicação:**
    * Sempre gerar Android App Bundle (**`.aab`**) assinado com chave de release.
 
 ---
 
-## 5. Padrão de Publicação e Assets para a Play Store
+## 5. Tratamento de Avisos do Google Play Console (Warnings vs Errors)
+
+Ao fazer o upload de um `.aab` no Google Play Console, é comum receber **Avisos** (amarelos). É fundamental distinguir **Erros** (que bloqueiam o lançamento) de **Avisos informativos** (que podem ser ignorados sem risco):
+
+### ⚠️ Aviso 1: Arquivo de Desofuscação (R8 / ProGuard / mapping.txt)
+* **Texto da Google:** *"Não há um arquivo de desofuscação associado a este App Bundle. Se você usar o código ofuscado (R8/proguard)..."*
+* **Significado e Procedimento Padrão:**
+  * O Google Play apenas alerta que, **se** você usou ofuscação de código Java, seria bom enviar o arquivo `mapping.txt`.
+  * Em jogos Godot (e jogos híbridos HTML5/WebView), a lógica principal roda em GDScript/C++ ou JavaScript. A camada Java existe apenas para hospedar a janela e inicializar o motor.
+  * **Regra do Estúdio:** Mantemos a ofuscação Java desligada (`minifyEnabled false`), pois ativar ProGuard em Godot costuma quebrar a reflexão JNI e chamadas internas do motor (`org.godotengine.godot`).
+  * **Conclusão:** **Ignorar este aviso com segurança.** Ele é puramente consultivo e não afeta o app.
+
+### ⚠️ Aviso 2: Símbolos Nativos de Depuração (NDK / Native Crash Support)
+* **Texto da Google:** *"Este App Bundle contém código nativo, e você não fez upload dos símbolos de depuração. Recomendamos que você faça upload..."*
+* **Significado e Procedimento Padrão:**
+  * Jogos Godot compilam bibliotecas nativas C++ (`libgodot_android.so`).
+  * Os templates oficiais de exportação da Godot Engine já são distribuídos com binários estripados (`stripped`) para que o jogo tenha download rápido (~20MB a 30MB em vez de 300MB+ de símbolos DWARF).
+  * No `build.gradle`, mantemos configurado:
+    ```groovy
+    ndk {
+        debugSymbolLevel 'SYMBOL_TABLE'
+    }
+    ```
+  * O aviso do Google Play é uma **recomendação opcional** para rastrear *crash dumps* com nomes de funções em C++ no painel do desenvolvedor.
+  * **Conclusão:** **Ignorar este aviso com segurança.** Ele NÃO bloqueia a revisão, nem o teste fechado, nem o lançamento em produção. (Caso um dia seja necessário depurar um crash nativo raro em C++, pode-se baixar o arquivo zip de debug symbols correspondente à versão exata do Godot e fazer o upload manual do zip no painel).
+
+
+---
+
+## 6. Padrão de Publicação e Assets para a Play Store
 
 Cada subpasta de jogo deve conter um diretório `playstore_assets/` contendo:
 * `playstore_icon_512x512.png`: Ícone oficial de alta resolução (512x512 px PNG 32-bit).
@@ -98,8 +122,9 @@ Cada subpasta de jogo deve conter um diretório `playstore_assets/` contendo:
 
 ---
 
-## 6. Segurança de Chaves e Repositório Git
+## 7. Segurança de Chaves e Repositório Git
 
 > [!CAUTION]
 > **NUNCA** commitar chaves de assinatura (`.keystore`, `.jks`), senhas ou tokens de API no Git.
 > O arquivo `.gitignore` na raiz do repositório deve sempre bloquear `*.keystore`, `.jks` e pastas `exports/`.
+

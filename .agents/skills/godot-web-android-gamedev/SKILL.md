@@ -82,12 +82,19 @@ Godot 4.3+ supports single-threaded web exports without needing cross-origin iso
 
 1. **Package Format:**
    * Google Play requires Android App Bundle (`.aab`) instead of `.apk`.
-2. **Target SDK:**
-   * Target SDK 34+ (Android 14) as mandated by Google Play policy.
-3. **Permissions:**
+2. **Target SDK & Toolchain:**
+   * **`compileSdk = 36`**, **`targetSdk = 36`** (Android 16), **`minSdk = 24`**, **`buildTools = '36.0.0'`**.
+   * Use **Java 17 (OpenJDK 17)** to execute Gradle builds.
+3. **Version Code Management:**
+   * Every upload to Play Console requires a strictly higher `versionCode` (e.g. 1, 2, 3...).
+4. **Google Play Console Warnings Handling:**
+   * *Deobfuscation / ProGuard (`mapping.txt`):* Godot uses GDScript/C++ with standard Java launcher. Keep `minifyEnabled false` to prevent breaking JNI reflection. Ignore the warning.
+   * *Native Debug Symbols:* Godot export templates use stripped `.so` binaries. Keep `debugSymbolLevel 'SYMBOL_TABLE'` in `buildTypes.release`. The Google Play warning is advisory and does not block releases.
+5. **Permissions:**
    * Only request essential permissions (e.g. `VIBRATE` for haptic feedback). Do not request unused permissions to prevent Play Store review delays.
-4. **Icons & Splash:**
+6. **Icons & Splash:**
    * Provide adaptive icons (Foreground + Background 432x432) and high-res launcher icons.
+
 
 ---
 
