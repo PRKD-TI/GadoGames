@@ -72,4 +72,7 @@ func start_new_maneuver() -> void:
 		var msg: String = "CURVA FECHADA À DIREITA!" if dir > 0.0 else "CURVA FECHADA À ESQUERDA!"
 		if intensity > 0.95:
 			msg = "DESVIO BRUSCO NA PISTA! ⚠️"
+			AudioManager.trigger_haptic(60)
+		else:
+			AudioManager.trigger_haptic(40)
 		emit_signal("turn_event_started", msg)

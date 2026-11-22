@@ -51,6 +51,20 @@ theme_override_constants/shadow_offset_y = 2
 text = "⏱️ TEMPO: 00:00.0s"
 vertical_alignment = 1
 
+[node name="CoinsLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 16.0
+offset_right = 530.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "[ 🪙 0 ]"
+vertical_alignment = 1
+
 [node name="RewardsLabel" type="Label" parent="HUD/TopBar"]
 layout_mode = 0
 offset_left = 30.0
@@ -102,9 +116,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -260.0
+offset_left = -240.0
 offset_top = 16.0
-offset_right = -20.0
+offset_right = -15.0
 offset_bottom = 66.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 18
@@ -115,9 +129,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -490.0
+offset_left = -455.0
 offset_top = 16.0
-offset_right = -280.0
+offset_right = -255.0
 offset_bottom = 66.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 18
@@ -128,13 +142,27 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -670.0
+offset_left = -605.0
 offset_top = 16.0
-offset_right = -510.0
+offset_right = -470.0
 offset_bottom = 66.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 18
 text = "🔄 REINICIAR"
+
+[node name="LeaderboardBtn" type="Button" parent="HUD/TopBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -780.0
+offset_top = 16.0
+offset_right = -620.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+text = "🏆 RANKING"
 
 [node name="CenterHUD" type="Control" parent="HUD"]
 layout_mode = 3
@@ -254,10 +282,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -280.0
-offset_top = -210.0
-offset_right = 280.0
-offset_bottom = 210.0
+offset_left = -320.0
+offset_top = -260.0
+offset_right = 320.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -266,51 +294,78 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = 30.0
-offset_right = -30.0
-offset_bottom = -30.0
+offset_left = 25.0
+offset_top = 20.0
+offset_right = -25.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 10
 
 [node name="TitleLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 theme_override_colors/font_color = Color(1, 0.25, 0.25, 1)
 text = "CAIU DO PARA-CHOQUE! 💥"
 horizontal_alignment = 1
 
 [node name="FinalTimeLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 text = "Tempo: 00:00.0s"
 horizontal_alignment = 1
 
 [node name="BestTimeLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 19
 theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
 text = "🏆 Recorde: 00:00.0s"
 horizontal_alignment = 1
 
+[node name="CoinsEarnedLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+text = "🪙 Moedas Ganhas: +0 GadoCoins"
+horizontal_alignment = 1
+
+[node name="TotalCoinsLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_color = Color(0.9, 0.95, 0.6, 1)
+text = "🪙 Saldo Atual: [ 🪙 0 ]"
+horizontal_alignment = 1
+
 [node name="ItemsEarnedLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(0.2, 0.9, 0.4, 1)
 text = "Conquistas: 🇧🇷 x0 | 🛞 x0"
 horizontal_alignment = 1
 
 [node name="RankLabel" type="Label" parent="HUD/GameOverPanel/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 theme_override_colors/font_color = Color(0.4, 0.9, 0.5, 1)
 text = "Título: Novato do Para-choque"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="RestartBtn" type="Button" parent="HUD/GameOverPanel/VBox"]
-custom_minimum_size = Vector2(0, 55)
+[node name="ButtonsBox" type="HBoxContainer" parent="HUD/GameOverPanel/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "🔄 TENTAR DE NOVO (R)"
+theme_override_constants/separation = 12
+
+[node name="RestartBtn" type="Button" parent="HUD/GameOverPanel/VBox/ButtonsBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "🔄 DE NOVO (R)"
+
+[node name="LeaderboardGameOverBtn" type="Button" parent="HUD/GameOverPanel/VBox/ButtonsBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+text = "🏆 RANKING"

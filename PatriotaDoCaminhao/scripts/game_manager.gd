@@ -1,7 +1,7 @@
 extends Node
 
 signal game_started
-signal game_over_triggered(score: float, rank_title: String)
+signal game_over_triggered(score: float, rank_title: String, coins_earned: int, is_new_record: bool)
 signal camera_switched(is_inside_view: bool)
 signal flag_earned(count: int)
 signal tire_earned(count: int)
@@ -32,12 +32,21 @@ func _process(delta: float) -> void:
 		if earned_flags > flags_count:
 			flags_count = earned_flags
 			emit_signal("flag_earned", flags_count)
+			AudioManager.trigger_haptic(45)
+			
+			# Conquistas Google Play Games Services
+			if flags_count == 1:
+				PlayGamesBridge.unlock_achievement("achievement_72_horas")
+			elif flags_count == 3:
+				PlayGamesBridge.unlock_achievement("achievement_aderencia_suprema")
 			
 		# Conquista do Pneu de Caminhão ao completar 1 minuto (60s)
 		var earned_tires: int = int(elapsed_time / 60.0)
 		if earned_tires > tires_count:
 			tires_count = earned_tires
 			emit_signal("tire_earned", tires_count)
+			AudioManager.trigger_haptic(75)
+			PlayGamesBridge.unlock_achievement("achievement_pneu_sagrado")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_camera"):
@@ -57,12 +66,34 @@ func end_game() -> void:
 		return
 	current_state = GameState.GAME_OVER
 	
+	# Feedback háptico no impacto da queda
+	AudioManager.trigger_haptic(110)
+	
+	var is_new_record: bool = false
+	var previous_high: float = high_score
 	if elapsed_time > high_score:
+		is_new_record = previous_high > 0.0
 		high_score = elapsed_time
 		save_highscore()
+		if is_new_record:
+			AudioManager.trigger_haptic(80)
+			
+	# Economia GadoCoin (🪙):
+	# +1 coin por segundo resistido + 5 por bandeira + 50 por pneu + 100 por novo recorde
+	var coins_time: int = int(elapsed_time)
+	var coins_flags: int = flags_count * 5
+	var coins_tires: int = tires_count * 50
+	var coins_record: int = 100 if is_new_record else 0
+	var total_earned: int = coins_time + coins_flags + coins_tires + coins_record
+	
+	if total_earned > 0:
+		GadoEconomy.add_coins(total_earned)
+		
+	# Envia score para a tabela de líderes do Google Play Games
+	PlayGamesBridge.submit_score("leaderboard_patriota_do_caminhao", int(elapsed_time * 100.0))
 		
 	var rank := get_rank(elapsed_time)
-	emit_signal("game_over_triggered", elapsed_time, rank)
+	emit_signal("game_over_triggered", elapsed_time, rank, total_earned, is_new_record)
 
 func restart_game() -> void:
 	get_tree().reload_current_scene()

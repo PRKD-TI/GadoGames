@@ -1,13 +1,16 @@
 # Godot 4 specifics
 .godot/
+**/.godot/
 *.translation
 
 # Build exports and binaries
 exports/
+**/exports/
 **/build/
-**/.gradle/
-android/build/
-android/.build_version
+**/android/build/.gradle/
+**/android/build/assetPacks/
+**/android/build/build/
+**/android/build/libs/
 
 # Sensitive Keys (NUNCA subir para o GitHub!)
 *.keystore

@@ -118,6 +118,7 @@ func trigger_fall() -> void:
 	current_expression = ExpressionState.FALLING
 	fall_velocity = Vector2(balance_velocity * 400.0 + (sign(balance_pos) * 350.0), 300.0)
 	emit_signal("fell_off")
+	AudioManager.trigger_haptic(110)
 	
 	var gm = get_tree().root.find_child("GameManager", true, false)
 	if gm and gm.has_method("end_game"):

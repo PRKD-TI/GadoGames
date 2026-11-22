@@ -13,6 +13,12 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.08, 0.08, 0.1, 1)
 config/icon="res://assets/icon.svg"
 
+[autoload]
+
+GadoEconomy="*res://shared/scripts/gado_economy.gd"
+PlayGamesBridge="*res://shared/scripts/play_games_bridge.gd"
+AudioManager="*res://shared/scripts/audio_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280

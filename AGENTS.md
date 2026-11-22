@@ -1,13 +1,13 @@
 # GadoGames — Padrões de Projeto e Diretrizes de Desenvolvimento
 
-Bem-vindo ao repositório central **GadoGames**. Este arquivo estabelece as regras de arquitetura, padrões de nomenclatura e fluxos de publicação para todos os jogos do estúdio.
+Bem-vindo ao repositório central **GadoGames**. Este arquivo estabelece as regras de arquitetura, padrões de nomenclatura, identidade visual, economia unificada e fluxos de publicação para todos os jogos do estúdio.
 Qualquer agente de IA (Antigravity/Gemini) ou desenvolvedor deve seguir rigorosamente estas diretrizes ao criar ou modificar jogos neste repositório.
 
 ---
 
 ## 1. Estrutura do Repositório (Monorepo)
 
-O repositório `GadoGames` reúne todos os jogos satíricos e casuais do estúdio em subdiretórios independentes:
+O repositório `GadoGames` reúne todos os jogos satíricos e casuais do estúdio em subdiretórios independentes, além de um diretório `shared/` para componentes e utilitários globais:
 
 ```text
 GadoGames/
@@ -15,6 +15,12 @@ GadoGames/
 ├── .gitignore                  # Regras globais de exclusão (chaves, builds)
 ├── AGENTS.md                   # Este arquivo de instruções
 ├── GEMINI.md                   # Link / espelho de instruções
+├── shared/                     # Toolkit compartilhado do estúdio
+│   ├── README.md
+│   └── scripts/
+│       ├── gado_economy.gd     # Gerenciador da moeda GadoCoin (🪙)
+│       ├── play_games_bridge.gd# Ponte Google Play Games com fallback Web
+│       └── audio_manager.gd    # Áudio e feedback tátil/haptic
 ├── PatriotaDoCaminhao/         # Jogo 1: Equilíbrio no para-choque
 │   ├── assets/
 │   ├── export_presets.cfg
@@ -27,6 +33,9 @@ GadoGames/
 ├── AloNaveMae/                 # Jogo 3: Vigília cósmica e Simon Says alienígena
 ├── MotociataTurbo/             # Jogo 4: Corrida de física 2D e liderança do comboio
 ├── EfeitoJacare/               # Jogo 5: Fuga de vacinas com Cloroquina e rampage de Jacaré
+├── EmaDoAlvorada/              # Jogo 6: Defesa e bicadas no Palácio
+├── HistoricoDeAtleta/          # Jogo 7: Corrida de obstáculos e flexões
+├── ZapDoGeneral/               # Jogo 8: Gerenciamento e disparo de correntes
 └── [ProximoJogo]/              # Novos jogos seguem o mesmo padrão
 ```
 
@@ -50,34 +59,77 @@ Para manter o código limpo, consistente e alinhado aos padrões da indústria e
 
 ---
 
-## 3. Diretrizes de Arquitetura Multiplataforma (Web + Android)
+## 3. Padrão Visual e de Display (Modo Paisagem Obrigatório)
 
-Todo jogo no `GadoGames` é projetado para rodar simultaneamente na **Web (HTML5/Navegadores)** e no **Android (Google Play Store)** a partir da mesma base de código:
+> [!IMPORTANT]
+> **Todos os jogos do GadoGames devem ser desenvolvidos exclusivamente em MODO PAISAGEM (Landscape).**
 
-1. **Renderizador Obrigatório:**
+No arquivo `project.godot` de cada jogo:
+1. **Resolução Base de Design:**
+   * Largura: `1280` px | Altura: `720` px (16:9 HD standard).
+   * Garante 60 FPS estáveis tanto em celulares modestos quanto em navegadores Web.
+2. **Modo de Redimensionamento:**
+   * `window/stretch/mode="canvas_items"`
+   * `window/stretch/aspect="keep"` (com safe margin para não cortar botões em telas 20:9 ultrawide).
+3. **Orientação:**
+   * `window/handheld/orientation=4` (**Sensor Landscape**).
+   * **Atenção:** `orientation=4` permite ao jogador girar o aparelho 180° mantendo o jogo na horizontal (facilitando uso com fone ou cabo de carregador). NUNCA usar `1` (Portrait).
+4. **Renderizador:**
    * Sempre usar `gl_compatibility` (OpenGL ES 3.0 / WebGL 2.0).
-   * **Por quê:** Garante 60 FPS estáveis tanto em celulares modestos quanto em qualquer navegador sem necessidade de suporte a Vulkan.
-2. **Display e Responsividade:**
-   * Modo: `window/stretch/mode="canvas_items"`
-   * Aspecto: `window/stretch/aspect="keep"`
-   * Orientação: `window/handheld/orientation=0` (Landscape) ou `4` (Sensor Landscape para jogos horizontais). **Atenção:** `1` é Portrait na Godot Engine e NUNCA deve ser usado para jogos horizontais.
-3. **Hardware Opcional no AndroidManifest (Evitar Restrições da Play Store):**
-   * Declarar sempre com `android:required="false"` os recursos de tela e sensores no `AndroidManifest.xml` para não restringir Tablets, Chromebooks/Desktop, Google Play Games no PC e Android XR:
-     ```xml
-     <uses-feature android:name="android.hardware.screen.portrait" android:required="false" />
-     <uses-feature android:name="android.hardware.screen.landscape" android:required="false" />
-     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
-     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
-     ```
-4. **Controles Dual/Híbridos:**
-   * Todo jogo deve responder tanto a Teclado/Mouse (PC/Web) quanto a Touch e Sensores (Android/Mobile).
-   * Quando houver suporte a inclinação (giroscópio/acelerômetro), incluir sempre um botão no HUD para ligar/desligar o sensor.
 
 ---
 
-## 4. Requisitos de Build Android e Google Play Store
+## 4. Economia Unificada: GadoCoin (🪙)
 
-Conforme validado e estabelecido na publicação dos jogos do estúdio (ex: *Sliding Words* e *Patriota do Caminhão*):
+Todos os jogos compartilham a mesma moeda satírica de recompensa: a **GadoCoin (`🪙`)**.
+
+* **Origem:** Gerenciada pela classe `GadoEconomy` (`shared/scripts/gado_economy.gd`).
+* **Como o jogador ganha:**
+  * Recompensa de desempenho na partida (tempo vivo, distância, pontos).
+  * Conquistas cumpridas (ex: 72 horas no caminhão = +100 GadoCoins).
+* **Para que serve:**
+  * Desbloqueio de cosméticos e skins satíricas (chapéus, capas, pneus cromados, cores especiais).
+  * Segunda chance / Reviver uma vez por partida ("Pagar 50 GadoCoins ou assistir anúncio").
+* **Interface:**
+  * O topo da tela (TopBar) de todos os jogos deve exibir o saldo: `[ 🪙 1.250 ]`.
+
+---
+
+## 5. Google Play Games Services (PGS v2) & Login
+
+Os jogos contam com integração oficial aos serviços de jogos do Google através da ponte `PlayGamesBridge` (`shared/scripts/play_games_bridge.gd`):
+
+1. **Login 100% Opcional:**
+   * O jogador **nunca** é obrigado a fazer login para jogar. Partidas offline e saldos locais sempre funcionam.
+   * Se o jogador quiser sincronizar pontuação e competir no ranking mundial, clica no botão 🏆 **"Ranking Global"** ou 👤 **"Conectar Google"**.
+2. **Placares (Leaderboards):**
+   * Cada jogo publica suas maiores pontuações/tempos na sua tabela oficial do Google Play Games.
+   * Botão nativo de ranking no Game Over e no Menu Principal.
+3. **Conquistas (Achievements):**
+   * Conquistas bem-humoradas e satíricas desbloqueiam a notificação oficial verde do Play Games e concedem bônus de GadoCoins.
+4. **Compatibilidade Multiplataforma (Web vs Android):**
+   * A ponte `PlayGamesBridge` detecta automaticamente a plataforma. Na Web (HTML5) ou Desktop, ela opera em modo seguro sem erros e mantém o recorde localmente.
+
+---
+
+## 6. Identidade de Franquia & Experiência de Usuário (HUD, Áudio e Haptic)
+
+Para que o usuário sinta que está jogando títulos da mesma produtora:
+
+1. **Vinheta de Abertura (Splash):**
+   * Tela rápida de ~2 segundos com o logotipo do **GadoGames** e o efeito sonoro oficial de abertura antes da tela de título.
+2. **TopBar Universal:**
+   * Canto superior: Saldo de GadoCoins `[ 🪙 ]`, Botão de Mudo/Áudio e Botão de Pausa/Configurações.
+3. **Tela de Game Over Padronizada:**
+   * Exibição clara de: Pontuação Atual, Melhor Pontuação (Recorde), GadoCoins Ganhos na rodada, Botão "Jogar Novamente" e Botão "🏆 Ranking".
+4. **Feedback Tátil (Haptic / Vibração):**
+   * Via `AudioManager.trigger_haptic(40)`. Pulsos curtos e satisfatórios ao clicar em botões, desviar no último segundo ou bater recorde. Configurável nas opções para quem preferir desativar.
+
+---
+
+## 7. Requisitos de Build Android e Google Play Store
+
+Conforme validado e estabelecido no estúdio:
 
 1. **Target SDK Obrigatório:**
    * **`compileSdk = 36`**
@@ -85,57 +137,30 @@ Conforme validado e estabelecido na publicação dos jogos do estúdio (ex: *Sli
    * **`minSdk = 24`** (Android 7.0+)
    * **`buildTools = '36.0.0'`**
 2. **Versionamento Estrito:**
-   * Toda nova submissão/upload no Play Console exige um **`versionCode` estritamente incremental** (`1`, `2`, `3`...).
-   * Se um upload de `versionCode 1` já tiver sido feito (mesmo como rascunho), o próximo deve ser `versionCode 2` (`versionName 1.0.1`).
+   * Toda nova submissão no Play Console exige **`versionCode` estritamente incremental** (`1`, `2`, `3`...).
 3. **Versão do Java (JDK):**
-   * Sempre usar **Java 17 (OpenJDK 17)** para compilar o Gradle do Godot 4 (Java 21 causa erro de compatibilidade no Gradle do Godot).
+   * Sempre usar **Java 17 (OpenJDK 17)** para compilar o Gradle do Godot 4.
 4. **Formato de Publicação:**
    * Sempre gerar Android App Bundle (**`.aab`**) assinado com chave de release.
+5. **Hardware Opcional no AndroidManifest (Evitar Restrições):**
+   ```xml
+   <uses-feature android:name="android.hardware.screen.portrait" android:required="false" />
+   <uses-feature android:name="android.hardware.screen.landscape" android:required="false" />
+   <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+   <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+   ```
 
 ---
 
-## 5. Tratamento de Avisos do Google Play Console (Warnings vs Errors)
+## 8. Tratamento de Avisos do Google Play Console (Warnings vs Errors)
 
-Ao fazer o upload de um `.aab` no Google Play Console, é comum receber **Avisos** (amarelos). É fundamental distinguir **Erros** (que bloqueiam o lançamento) de **Avisos informativos** (que podem ser ignorados sem risco):
-
-### ⚠️ Aviso 1: Arquivo de Desofuscação (R8 / ProGuard / mapping.txt)
-* **Texto da Google:** *"Não há um arquivo de desofuscação associado a este App Bundle. Se você usar o código ofuscado (R8/proguard)..."*
-* **Significado e Procedimento Padrão:**
-  * O Google Play apenas alerta que, **se** você usou ofuscação de código Java, seria bom enviar o arquivo `mapping.txt`.
-  * Em jogos Godot (e jogos híbridos HTML5/WebView), a lógica principal roda em GDScript/C++ ou JavaScript. A camada Java existe apenas para hospedar a janela e inicializar o motor.
-  * **Regra do Estúdio:** Mantemos a ofuscação Java desligada (`minifyEnabled false`), pois ativar ProGuard em Godot costuma quebrar a reflexão JNI e chamadas internas do motor (`org.godotengine.godot`).
-  * **Conclusão:** **Ignorar este aviso com segurança.** Ele é puramente consultivo e não afeta o app.
-
-### ⚠️ Aviso 2: Símbolos Nativos de Depuração (NDK / Native Crash Support)
-* **Texto da Google:** *"Este App Bundle contém código nativo, e você não fez upload dos símbolos de depuração. Recomendamos que você faça upload..."*
-* **Significado e Procedimento Padrão:**
-  * Jogos Godot compilam bibliotecas nativas C++ (`libgodot_android.so`).
-  * Os templates oficiais de exportação da Godot Engine já são distribuídos com binários estripados (`stripped`) para que o jogo tenha download rápido (~20MB a 30MB em vez de 300MB+ de símbolos DWARF).
-  * No `build.gradle`, mantemos configurado:
-    ```groovy
-    ndk {
-        debugSymbolLevel 'SYMBOL_TABLE'
-    }
-    ```
-  * O aviso do Google Play é uma **recomendação opcional** para rastrear *crash dumps* com nomes de funções em C++ no painel do desenvolvedor.
-  * **Conclusão:** **Ignorar este aviso com segurança.** Ele NÃO bloqueia a revisão, nem o teste fechado, nem o lançamento em produção. (Caso um dia seja necessário depurar um crash nativo raro em C++, pode-se baixar o arquivo zip de debug symbols correspondente à versão exata do Godot e fazer o upload manual do zip no painel).
-
+* **Aviso de Desofuscação (R8 / ProGuard / mapping.txt):** Manter `minifyEnabled false`. É apenas informativo e não bloqueia lançamentos.
+* **Aviso de Símbolos Nativos (NDK / SYMBOL_TABLE):** Os templates oficiais Godot já vêm com binários estripados (~25MB). Mantemos `ndk { debugSymbolLevel 'SYMBOL_TABLE' }`. O aviso é puramente consultivo e pode ser ignorado.
 
 ---
 
-## 6. Padrão de Publicação e Assets para a Play Store
-
-Cada subpasta de jogo deve conter um diretório `playstore_assets/` contendo:
-* `playstore_icon_512x512.png`: Ícone oficial de alta resolução (512x512 px PNG 32-bit).
-* `feature_graphic_1024x500.png`: Banner de destaque promocional da loja (1024x500 px).
-* `politica_privacidade.html`: Declaração de privacidade do app (sem coleta invasiva de dados).
-* `playstore_listing.txt`: Título, descrição curta, descrição completa e respostas dos formulários de conformidade do Google Play Console.
-
----
-
-## 7. Segurança de Chaves e Repositório Git
+## 9. Segurança e CI/CD
 
 > [!CAUTION]
-> **NUNCA** commitar chaves de assinatura (`.keystore`, `.jks`), senhas ou tokens de API no Git.
-> O arquivo `.gitignore` na raiz do repositório deve sempre bloquear `*.keystore`, `.jks` e pastas `exports/`.
-
+> **NUNCA** commitar chaves de assinatura (`.keystore`, `.jks`), senhas ou arquivos de credenciais JSON do Google Cloud no Git.
+> O arquivo `.gitignore` global bloqueia `*.keystore`, `.jks`, `.json` de credenciais e pastas `exports/`.
