@@ -19,24 +19,27 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	var w := 1280.0
-	var h := 720.0
+	var v_size := get_viewport_rect().size
+	var w := maxf(v_size.x, 1280.0)
+	var h := maxf(v_size.y, 720.0)
+	var margin := 400.0
 	
-	# 1. Estrada e Céu vistos pelo vidro
-	draw_rect(Rect2(0, 0, w, 400), Color(0.4, 0.65, 0.95)) # Céu
+	# 1. Estrada e Céu vistos pelo vidro preenchendo toda a tela
+	draw_rect(Rect2(-margin, 0, w + (margin * 2.0), 400), Color(0.4, 0.65, 0.95)) # Céu
 	# Montanhas/Vegetação ao longe
 	draw_colored_polygon([
-		Vector2(0, 360), Vector2(300, 280), Vector2(640, 340),
-		Vector2(950, 290), Vector2(w, 350), Vector2(w, 400), Vector2(0, 400)
+		Vector2(-margin, 360), Vector2(300, 280), Vector2(w * 0.5, 340),
+		Vector2(w * 0.75, 290), Vector2(w + margin, 350), Vector2(w + margin, 400), Vector2(-margin, 400)
 	], Color(0.2, 0.5, 0.25))
 	
 	# Asfalto da pista
-	draw_rect(Rect2(0, 380, w, 220), Color(0.2, 0.22, 0.25))
+	draw_rect(Rect2(-margin, 380, w + (margin * 2.0), 220), Color(0.2, 0.22, 0.25))
 	
 	# Faixas da pista em movimento
 	var offset := fmod(truck.road_scroll_offset if (truck and "road_scroll_offset" in truck) else 0.0, 160.0)
-	for i in range(-1, 9):
-		var x_pos := float(i) * 160.0 - offset
+	var num_lanes := int((w + (margin * 2.0)) / 160.0) + 2
+	for i in range(-3, num_lanes):
+		var x_pos := float(i) * 160.0 - offset - margin
 		draw_rect(Rect2(x_pos, 440, 90, 16), Color(0.95, 0.95, 0.3)) # Faixa amarela
 		draw_rect(Rect2(x_pos + 40, 510, 80, 12), Color(0.9, 0.9, 0.9, 0.8)) # Faixa branca
 	
@@ -133,22 +136,23 @@ func draw_windshield_wipers(w: float, _h: float) -> void:
 func draw_cabin_interior(w: float, h: float) -> void:
 	var cabin_color := Color(0.14, 0.15, 0.17)
 	var trim_color := Color(0.2, 0.22, 0.25)
+	var margin := 400.0
 	
 	# Colunas laterais do parabrisa
-	draw_colored_polygon([Vector2(0, 0), Vector2(90, 0), Vector2(160, 520), Vector2(0, 520)], cabin_color)
-	draw_colored_polygon([Vector2(w, 0), Vector2(w - 90, 0), Vector2(w - 160, 520), Vector2(w, 520)], cabin_color)
+	draw_colored_polygon([Vector2(-margin, 0), Vector2(90, 0), Vector2(160, 520), Vector2(-margin, 520)], cabin_color)
+	draw_colored_polygon([Vector2(w + margin, 0), Vector2(w - 90, 0), Vector2(w - 160, 520), Vector2(w + margin, 520)], cabin_color)
 	
 	# Teto da cabine
-	draw_rect(Rect2(0, 0, w, 70), cabin_color)
+	draw_rect(Rect2(-margin, 0, w + (margin * 2.0), 70), cabin_color)
 	draw_rect(Rect2(w / 2.0 - 110, 55, 220, 50), Color(0.08, 0.08, 0.08))
 	draw_rect(Rect2(w / 2.0 - 105, 60, 210, 40), Color(0.65, 0.7, 0.75))
 	
 	# Painel do caminhão
-	draw_rect(Rect2(0, 510, w, h - 510), cabin_color)
-	draw_rect(Rect2(0, 510, w, 14), trim_color)
+	draw_rect(Rect2(-margin, 510, w + (margin * 2.0), h - 510 + 100), cabin_color)
+	draw_rect(Rect2(-margin, 510, w + (margin * 2.0), 14), trim_color)
 	
 	# Mostrador de Velocidade
-	var spd_x := 320.0
+	var spd_x := w * 0.28
 	var spd_y := 610.0
 	draw_circle(Vector2(spd_x, spd_y), 65.0, Color(0.05, 0.05, 0.05))
 	draw_arc(Vector2(spd_x, spd_y), 60.0, 0, PI * 2, 32, Color(0.3, 0.9, 0.3), 4.0)
@@ -160,7 +164,7 @@ func draw_cabin_interior(w: float, h: float) -> void:
 	draw_line(Vector2(spd_x, spd_y), ptr_end, Color.RED, 4.0)
 	
 	# Volante do Caminhão
-	var wheel_x := 880.0
+	var wheel_x := w * 0.72
 	var wheel_y := 630.0
 	var steer: float = truck.steering_angle if (truck and "steering_angle" in truck) else 0.0
 	

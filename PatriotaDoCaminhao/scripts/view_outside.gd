@@ -9,15 +9,17 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	var w := 1280.0
-	var h := 720.0
+	var v_size := get_viewport_rect().size
+	var w := maxf(v_size.x, 1280.0)
+	var h := maxf(v_size.y, 720.0)
+	var margin := 400.0
 	
-	# 1. Pista de Asfalto e Céu
-	draw_rect(Rect2(0, 0, w, 280), Color(0.45, 0.7, 0.95)) # Céu
-	draw_rect(Rect2(0, 260, w, 60), Color(0.18, 0.45, 0.2)) # Acostamento
+	# 1. Pista de Asfalto e Céu preenchendo toda a tela do celular
+	draw_rect(Rect2(-margin, 0, w + (margin * 2.0), 280), Color(0.45, 0.7, 0.95)) # Céu
+	draw_rect(Rect2(-margin, 260, w + (margin * 2.0), 60), Color(0.18, 0.45, 0.2)) # Acostamento
 	draw_colored_polygon([
-		Vector2(180, 280), Vector2(w - 180, 280),
-		Vector2(w + 100, h), Vector2(-100, h)
+		Vector2(w * 0.15, 280), Vector2(w * 0.85, 280),
+		Vector2(w + margin, h), Vector2(-margin, h)
 	], Color(0.22, 0.23, 0.26)) # Asfalto
 	
 	# Faixas da rodovia passando em perspectiva

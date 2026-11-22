@@ -21,10 +21,10 @@ script = ExtResource("3_truck")
 script = ExtResource("4_pat")
 
 [node name="ViewInside" type="Node2D" parent="."]
+visible = false
 script = ExtResource("5_inside")
 
 [node name="ViewOutside" type="Node2D" parent="."]
-visible = false
 script = ExtResource("6_outside")
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -108,20 +108,33 @@ offset_right = -20.0
 offset_bottom = 66.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 18
-text = "🎥 VISÃO: CABINE (C)"
+text = "🎥 VISÃO: EXTERNA (C)"
 
 [node name="TiltBtn" type="Button" parent="HUD/TopBar"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -500.0
+offset_left = -490.0
 offset_top = 16.0
 offset_right = -280.0
 offset_bottom = 66.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 18
 text = "📱 SENSOR: LIGADO"
+
+[node name="RestartTopBtn" type="Button" parent="HUD/TopBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -670.0
+offset_top = 16.0
+offset_right = -510.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 18
+text = "🔄 REINICIAR"
 
 [node name="CenterHUD" type="Control" parent="HUD"]
 layout_mode = 3

@@ -13,6 +13,7 @@ var truck: Node2D = null
 @onready var balance_indicator: ColorRect = $CenterHUD/BalanceIndicator
 @onready var camera_btn: Button = $TopBar/CameraBtn
 @onready var tilt_btn: Button = $TopBar/TiltBtn
+@onready var restart_top_btn: Button = $TopBar/RestartTopBtn
 
 @onready var game_over_panel: Panel = $GameOverPanel
 @onready var final_time_label: Label = $GameOverPanel/VBox/FinalTimeLabel
@@ -41,6 +42,7 @@ func _ready() -> void:
 		game_manager.connect("camera_switched", Callable(self, "_on_camera_switched"))
 		game_manager.connect("flag_earned", Callable(self, "_on_flag_earned"))
 		game_manager.connect("tire_earned", Callable(self, "_on_tire_earned"))
+		_on_camera_switched(game_manager.is_inside_view())
 		
 	if truck:
 		truck.connect("turn_event_started", Callable(self, "_on_turn_event"))
@@ -49,6 +51,9 @@ func _ready() -> void:
 	if tilt_btn:
 		tilt_btn.pressed.connect(_on_tilt_btn_pressed)
 		update_tilt_btn_label()
+		
+	if restart_top_btn:
+		restart_top_btn.pressed.connect(_on_restart_pressed)
 		
 	restart_btn.pressed.connect(_on_restart_pressed)
 	
@@ -74,7 +79,8 @@ func _process(delta: float) -> void:
 		if patriota:
 			var normalized_pos: float = (patriota.balance_pos + 1.0) / 2.0 # 0.0 a 1.0
 			var bar_width: float = 400.0
-			balance_indicator.position.x = 440.0 + (normalized_pos * (bar_width - 20.0))
+			var center_x: float = get_viewport().get_visible_rect().size.x / 2.0
+			balance_indicator.position.x = (center_x - (bar_width / 2.0)) + (normalized_pos * (bar_width - 20.0))
 			
 			if abs(patriota.balance_pos) > 0.65:
 				balance_indicator.color = Color.RED

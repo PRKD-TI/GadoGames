@@ -10,7 +10,7 @@ enum GameState { READY, PLAYING, GAME_OVER }
 enum CameraMode { INSIDE, OUTSIDE }
 
 var current_state: GameState = GameState.READY
-var current_camera: CameraMode = CameraMode.INSIDE
+var current_camera: CameraMode = CameraMode.OUTSIDE
 
 var elapsed_time: float = 0.0
 var high_score: float = 0.0
@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_camera"):
 		toggle_camera()
-	elif event.is_action_pressed("restart") and current_state == GameState.GAME_OVER:
+	elif event.is_action_pressed("restart"):
 		restart_game()
 
 func start_game() -> void:
