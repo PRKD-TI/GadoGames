@@ -13,27 +13,41 @@ Gratuito ou Pago: Gratuito
 2. TEXTOS DA FICHA NA PLAY STORE
 --------------------------------------------------------------------------------
 [Descrição Curta - Até 80 caracteres]:
-Equilibre o patriota no para-choque do caminhão e sobreviva às curvas da rodovia!
+Jogo arcade de equilíbrio e física: controle o personagem e desvie das curvas!
 
 [Descrição Completa]:
-🚚 Segure firme e resista a mais 72 horas no para-choque de um caminhão em alta velocidade! 🇧🇷
+Patriota do Caminhão é um jogo arcade casual de equilíbrio e física 2D onde o seu objetivo é testar seus reflexos mantendo o personagem equilibrado na parte frontal de um caminhão em movimento ao longo de uma rodovia movimentada.
 
-Inspirado no meme clássico brasileiro, em "Patriota do Caminhão" o seu objetivo é um só: manter o centro de equilíbrio e não deixar o personagem escorregar e voar pela rodovia enquanto o caminhão faz manobras evasivas, desvios e curvas fechadas!
+Com física dinâmica de balanço, velocidade progressiva e diferentes ângulos de câmera, o desafio aumenta a cada segundo conforme o caminhão acelera e enfrenta curvas fechadas na pista.
 
-🎮 DUAS VISÕES EM TEMPO REAL:
-• Visão da Cabine (Motorista): Encare o patriota com a cara colada no para-brisa enquanto o volante vira e o velocímetro sobe!
-• Visão Frontal Externa: Veja a grade dianteira pesada, as bandeirinhas balançando nos retrovisores e o patriota tentando não cair no asfalto!
+CARACTERÍSTICAS PRINCIPAIS:
 
-📱 CONTROLES INTUITIVOS:
-• Incline o Celular (Giroscópio): Equilibre o patriota movendo o aparelho naturalmente com as mãos!
-• Botões Touch na Tela: Jogue com toques rápidos nas setas da tela se preferir.
+• DUPLA VISÃO DE CÂMERA EM TEMPO REAL:
+  - Câmera da Cabine (Primeira Pessoa): Sinta a experiência do motorista observando o painel, limpadores de para-brisa em movimento e a reação do personagem no vidro dianteiro.
+  - Câmera Externa (Terceira Pessoa): Visualize o caminhão inteiro em perspectiva, as faixas da estrada e o centro de massa do personagem se equilibrando.
+  - Alterne entre as câmeras a qualquer momento com um simples toque no botão de câmera.
 
-🏆 CONQUISTAS E RECOMPENSAS HILÁRIAS:
-• 🇧🇷 A cada 10 segundos resistidos, ganhe uma Bandeirinha da Pátria!
-• 🛞 Complete 1 minuto de equilíbrio e conquiste o lendário PNEU DE CAMINHÃO SAGRADO!
-• Desbloqueie títulos cômicos de sobrevivência: de "Pneu Murcho" a "Mito da BR-101".
+• CONTROLES HÍBRIDOS E ACESSIBILIDADE:
+  - Sensor de Movimento (Acelerômetro/Giroscópio): Equilibre o personagem inclinando fisicamente o seu celular ou tablet para a esquerda e para a direita.
+  - Botões Virtuais na Tela: Utilize as setas de toque no display para jogar com facilidade em qualquer lugar.
+  - Botão de controle no menu para ativar ou desativar o sensor de inclinação a qualquer momento.
 
-Você tem o equilíbrio necessário para resistir? Baixe agora e teste seus reflexos!
+• FÍSICA PROGRESSIVA E DESAFIO CRESCENTE:
+  - Curvas de aceleração suaves nos primeiros segundos para ambientação rápida.
+  - Desafios dinâmicos de estabilidade conforme o velocímetro sobe de 45 km/h até velocidades extremas.
+  - Barra de equilíbrio no topo da tela com alertas visuais de perigo de queda.
+
+• SISTEMA DE PONTUAÇÃO E CONQUISTAS:
+  - Conquiste bandeirinhas comemorativas a cada 10 segundos de equilíbrio mantido.
+  - Desbloqueie o troféu especial ao atingir a marca de 60 segundos de sobrevivência.
+  - Recorde de maior tempo salvo automaticamente no dispositivo.
+
+• JOGO 100% OFFLINE E SEGURO:
+  - Não requer conexão com a internet para jogar.
+  - Não realiza coleta ou compartilhamento de dados pessoais.
+  - Sem compras em dinheiro real.
+
+Teste seus reflexos, domine o equilíbrio na rodovia e veja quantos segundos você consegue resistir!
 
 3. RESPOSTAS DOS QUESTIONÁRIOS DE POLÍTICA (GOOGLE PLAY CONSOLE)
 --------------------------------------------------------------------------------

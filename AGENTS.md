@@ -24,6 +24,9 @@ GadoGames/
 │   ├── scenes/
 │   └── scripts/
 ├── RezarERodar/                # Jogo 2: Sátira do altar de pneu
+├── AloNaveMae/                 # Jogo 3: Vigília cósmica e Simon Says alienígena
+├── MotociataTurbo/             # Jogo 4: Corrida de física 2D e liderança do comboio
+├── EfeitoJacare/               # Jogo 5: Fuga de vacinas com Cloroquina e rampage de Jacaré
 └── [ProximoJogo]/              # Novos jogos seguem o mesmo padrão
 ```
 
@@ -57,8 +60,16 @@ Todo jogo no `GadoGames` é projetado para rodar simultaneamente na **Web (HTML5
 2. **Display e Responsividade:**
    * Modo: `window/stretch/mode="canvas_items"`
    * Aspecto: `window/stretch/aspect="keep"`
-   * Orientação: `window/handheld/orientation=1` (Sensor Landscape para jogos horizontais).
-3. **Controles Dual/Híbridos:**
+   * Orientação: `window/handheld/orientation=0` (Landscape) ou `4` (Sensor Landscape para jogos horizontais). **Atenção:** `1` é Portrait na Godot Engine e NUNCA deve ser usado para jogos horizontais.
+3. **Hardware Opcional no AndroidManifest (Evitar Restrições da Play Store):**
+   * Declarar sempre com `android:required="false"` os recursos de tela e sensores no `AndroidManifest.xml` para não restringir Tablets, Chromebooks/Desktop, Google Play Games no PC e Android XR:
+     ```xml
+     <uses-feature android:name="android.hardware.screen.portrait" android:required="false" />
+     <uses-feature android:name="android.hardware.screen.landscape" android:required="false" />
+     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+     ```
+4. **Controles Dual/Híbridos:**
    * Todo jogo deve responder tanto a Teclado/Mouse (PC/Web) quanto a Touch e Sensores (Android/Mobile).
    * Quando houver suporte a inclinação (giroscópio/acelerômetro), incluir sempre um botão no HUD para ligar/desligar o sensor.
 
